@@ -1,0 +1,108 @@
+﻿@model CompanySite.Models.NewsModel
+
+@{
+    ViewBag.Title = "NewsList2";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>NewsList2</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateNews")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model=>model.News.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.ClassId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.Hits)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.Content)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.IsTop)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.IsElite)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.IsUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.IsShow)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.IsImage)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.LinkUrl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.ImagePath)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.News.PostTime)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model.NewsList)
+{
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ClassId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Title)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hits)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsTop)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsElite)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsShow)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsImage)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LinkUrl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagePath)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PostTime)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.NewsId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.NewsId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.NewsId })
+        </td>
+    </tr>
+}
+
+</table>
+@Html.DisplayFor(model => model.Page)

@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="CompanyModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="CompanyModelStoreContainer">
+          <EntitySet Name="Channel" EntityType="CompanyModel.Store.Channel" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Introduction" EntityType="CompanyModel.Store.Introduction" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="LoginLog" EntityType="CompanyModel.Store.LoginLog" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="News" EntityType="CompanyModel.Store.News" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="NewsClass" EntityType="CompanyModel.Store.NewsClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Partner" EntityType="CompanyModel.Store.Partner" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="CompanyModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProductClass" EntityType="CompanyModel.Store.ProductClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Project" EntityType="CompanyModel.Store.Project" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="ProjectClass" EntityType="CompanyModel.Store.ProjectClass" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="User" EntityType="CompanyModel.Store.User" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK_LOGINLOG_REFERENCE_USER" Association="CompanyModel.Store.FK_LOGINLOG_REFERENCE_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="LoginLog" EntitySet="LoginLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWS_REFERENCE_NEWSCLAS" Association="CompanyModel.Store.FK_NEWS_REFERENCE_NEWSCLAS">
+            <End Role="NewsClass" EntitySet="NewsClass" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWS_REFERENCE_USER" Association="CompanyModel.Store.FK_NEWS_REFERENCE_USER">
+            <End Role="User" EntitySet="User" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_REFERENCE_PRODUCTC" Association="CompanyModel.Store.FK_PRODUCT_REFERENCE_PRODUCTC">
+            <End Role="ProductClass" EntitySet="ProductClass" />
+            <End Role="Product" EntitySet="Product" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_REFERENCE_PROJECTC" Association="CompanyModel.Store.FK_PROJECT_REFERENCE_PROJECTC">
+            <End Role="ProjectClass" EntitySet="ProjectClass" />
+            <End Role="Project" EntitySet="Project" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="ChannelId" />
+          </Key>
+          <Property Name="ChannelId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ChannelName" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionId" />
+          </Key>
+          <Property Name="IntroductionId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="IsTop" Type="bit" Nullable="false" />
+          <Property Name="IsElite" Type="bit" Nullable="false" />
+          <Property Name="IsUrl" Type="bit" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="IsImage" Type="bit" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="LoginLogId" />
+          </Key>
+          <Property Name="LoginLogId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="LoginTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Name="NewsId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="int" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="IsTop" Type="bit" Nullable="false" />
+          <Property Name="IsElite" Type="bit" Nullable="false" />
+          <Property Name="IsUrl" Type="bit" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="IsImage" Type="bit" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="NewsClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Summary" Type="nvarchar" MaxLength="200" />
+          <Property Name="Order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerId" />
+          </Key>
+          <Property Name="PartnerId" Type="int" Nullable="false" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="IsTop" Type="bit" Nullable="false" />
+          <Property Name="IsElite" Type="bit" Nullable="false" />
+          <Property Name="IsUrl" Type="bit" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="IsImage" Type="bit" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Name="ProductId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="IsTop" Type="bit" Nullable="false" />
+          <Property Name="IsElite" Type="bit" Nullable="false" />
+          <Property Name="IsUrl" Type="bit" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="IsImage" Type="bit" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProductClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Summary" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Name="ProjectId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassId" Type="int" />
+          <Property Name="ProjectName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Hits" Type="int" />
+          <Property Name="Content" Type="ntext" Nullable="false" />
+          <Property Name="IsTop" Type="bit" Nullable="false" />
+          <Property Name="IsElite" Type="bit" Nullable="false" />
+          <Property Name="IsUrl" Type="bit" Nullable="false" />
+          <Property Name="IsShow" Type="bit" Nullable="false" />
+          <Property Name="IsImage" Type="bit" Nullable="false" />
+          <Property Name="LinkUrl" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="200" />
+          <Property Name="PostTime" Type="datetime" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ProjectClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Name="ClassId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ClassName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Summary" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Order" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="200" />
+        </EntityType>
+        <Association Name="FK_LOGINLOG_REFERENCE_USER">
+          <End Role="User" Type="CompanyModel.Store.User" Multiplicity="0..1" />
+          <End Role="LoginLog" Type="CompanyModel.Store.LoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="LoginLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWS_REFERENCE_NEWSCLAS">
+          <End Role="NewsClass" Type="CompanyModel.Store.NewsClass" Multiplicity="0..1" />
+          <End Role="News" Type="CompanyModel.Store.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWS_REFERENCE_USER">
+          <End Role="User" Type="CompanyModel.Store.User" Multiplicity="0..1" />
+          <End Role="News" Type="CompanyModel.Store.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_REFERENCE_PRODUCTC">
+          <End Role="ProductClass" Type="CompanyModel.Store.ProductClass" Multiplicity="0..1" />
+          <End Role="Product" Type="CompanyModel.Store.Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_REFERENCE_PROJECTC">
+          <End Role="ProjectClass" Type="CompanyModel.Store.ProjectClass" Multiplicity="0..1" />
+          <End Role="Project" Type="CompanyModel.Store.Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="CompanyModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="CompanyEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Channels" EntityType="CompanyModel.Channel" />
+          <EntitySet Name="Introductions" EntityType="CompanyModel.Introduction" />
+          <EntitySet Name="LoginLogs" EntityType="CompanyModel.LoginLog" />
+          <EntitySet Name="News" EntityType="CompanyModel.News" />
+          <EntitySet Name="NewsClasses" EntityType="CompanyModel.NewsClass" />
+          <EntitySet Name="Partners" EntityType="CompanyModel.Partner" />
+          <EntitySet Name="Products" EntityType="CompanyModel.Product" />
+          <EntitySet Name="ProductClasses" EntityType="CompanyModel.ProductClass" />
+          <EntitySet Name="Projects" EntityType="CompanyModel.Project" />
+          <EntitySet Name="ProjectClasses" EntityType="CompanyModel.ProjectClass" />
+          <EntitySet Name="Users" EntityType="CompanyModel.User" />
+          <AssociationSet Name="FK_LOGINLOG_REFERENCE_USER" Association="CompanyModel.FK_LOGINLOG_REFERENCE_USER">
+            <End Role="User" EntitySet="Users" />
+            <End Role="LoginLog" EntitySet="LoginLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWS_REFERENCE_NEWSCLAS" Association="CompanyModel.FK_NEWS_REFERENCE_NEWSCLAS">
+            <End Role="NewsClass" EntitySet="NewsClasses" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NEWS_REFERENCE_USER" Association="CompanyModel.FK_NEWS_REFERENCE_USER">
+            <End Role="User" EntitySet="Users" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PRODUCT_REFERENCE_PRODUCTC" Association="CompanyModel.FK_PRODUCT_REFERENCE_PRODUCTC">
+            <End Role="ProductClass" EntitySet="ProductClasses" />
+            <End Role="Product" EntitySet="Products" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PROJECT_REFERENCE_PROJECTC" Association="CompanyModel.FK_PROJECT_REFERENCE_PROJECTC">
+            <End Role="ProjectClass" EntitySet="ProjectClasses" />
+            <End Role="Project" EntitySet="Projects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Channel">
+          <Key>
+            <PropertyRef Name="ChannelId" />
+          </Key>
+          <Property Type="Int32" Name="ChannelId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ChannelName" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Introduction">
+          <Key>
+            <PropertyRef Name="IntroductionId" />
+          </Key>
+          <Property Type="Int32" Name="IntroductionId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Hits" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsTop" Nullable="false" />
+          <Property Type="Boolean" Name="IsElite" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrl" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Boolean" Name="IsImage" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PostTime" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LoginLog">
+          <Key>
+            <PropertyRef Name="LoginLogId" />
+          </Key>
+          <Property Type="Int32" Name="LoginLogId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="DateTime" Name="LoginTime" />
+          <NavigationProperty Name="User" Relationship="CompanyModel.FK_LOGINLOG_REFERENCE_USER" FromRole="LoginLog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="NewsId" />
+          </Key>
+          <Property Type="Int32" Name="NewsId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="UserId" />
+          <Property Type="Int32" Name="ClassId" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Hits" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsTop" Nullable="false" />
+          <Property Type="Boolean" Name="IsElite" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrl" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Boolean" Name="IsImage" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PostTime" />
+          <NavigationProperty Name="NewsClass" Relationship="CompanyModel.FK_NEWS_REFERENCE_NEWSCLAS" FromRole="News" ToRole="NewsClass" />
+          <NavigationProperty Name="User" Relationship="CompanyModel.FK_NEWS_REFERENCE_USER" FromRole="News" ToRole="User" />
+        </EntityType>
+        <EntityType Name="NewsClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Type="Int32" Name="ClassId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ClassName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Summary" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order" Nullable="false" />
+          <NavigationProperty Name="News" Relationship="CompanyModel.FK_NEWS_REFERENCE_NEWSCLAS" FromRole="NewsClass" ToRole="News" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="PartnerId" />
+          </Key>
+          <Property Type="Int32" Name="PartnerId" Nullable="false" />
+          <Property Type="Int32" Name="Hits" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsTop" Nullable="false" />
+          <Property Type="Boolean" Name="IsElite" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrl" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Boolean" Name="IsImage" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PostTime" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ProductId" />
+          </Key>
+          <Property Type="Int32" Name="ProductId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ClassId" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Hits" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsTop" Nullable="false" />
+          <Property Type="Boolean" Name="IsElite" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrl" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Boolean" Name="IsImage" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PostTime" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="ProductClass" Relationship="CompanyModel.FK_PRODUCT_REFERENCE_PRODUCTC" FromRole="Product" ToRole="ProductClass" />
+        </EntityType>
+        <EntityType Name="ProductClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Type="Int32" Name="ClassId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ClassName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Summary" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order" Nullable="false" />
+          <NavigationProperty Name="Products" Relationship="CompanyModel.FK_PRODUCT_REFERENCE_PRODUCTC" FromRole="ProductClass" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="ProjectId" />
+          </Key>
+          <Property Type="Int32" Name="ProjectId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ClassId" />
+          <Property Type="String" Name="ProjectName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Title" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Hits" />
+          <Property Type="String" Name="Content" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="IsTop" Nullable="false" />
+          <Property Type="Boolean" Name="IsElite" Nullable="false" />
+          <Property Type="Boolean" Name="IsUrl" Nullable="false" />
+          <Property Type="Boolean" Name="IsShow" Nullable="false" />
+          <Property Type="Boolean" Name="IsImage" Nullable="false" />
+          <Property Type="String" Name="LinkUrl" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ImagePath" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="DateTime" Name="PostTime" />
+          <Property Type="Int32" Name="UserId" Nullable="false" />
+          <NavigationProperty Name="ProjectClass" Relationship="CompanyModel.FK_PROJECT_REFERENCE_PROJECTC" FromRole="Project" ToRole="ProjectClass" />
+        </EntityType>
+        <EntityType Name="ProjectClass">
+          <Key>
+            <PropertyRef Name="ClassId" />
+          </Key>
+          <Property Type="Int32" Name="ClassId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="ClassName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Summary" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="Order" Nullable="false" />
+          <NavigationProperty Name="Projects" Relationship="CompanyModel.FK_PROJECT_REFERENCE_PROJECTC" FromRole="ProjectClass" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Type="Int32" Name="UserId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="UserName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LoginLogs" Relationship="CompanyModel.FK_LOGINLOG_REFERENCE_USER" FromRole="User" ToRole="LoginLog" />
+          <NavigationProperty Name="News" Relationship="CompanyModel.FK_NEWS_REFERENCE_USER" FromRole="User" ToRole="News" />
+        </EntityType>
+        <Association Name="FK_LOGINLOG_REFERENCE_USER">
+          <End Type="CompanyModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CompanyModel.LoginLog" Role="LoginLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="LoginLog">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWS_REFERENCE_NEWSCLAS">
+          <End Type="CompanyModel.NewsClass" Role="NewsClass" Multiplicity="0..1" />
+          <End Type="CompanyModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="NewsClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NEWS_REFERENCE_USER">
+          <End Type="CompanyModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="CompanyModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="UserId" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PRODUCT_REFERENCE_PRODUCTC">
+          <End Type="CompanyModel.ProductClass" Role="ProductClass" Multiplicity="0..1" />
+          <End Type="CompanyModel.Product" Role="Product" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProductClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Product">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PROJECT_REFERENCE_PROJECTC">
+          <End Type="CompanyModel.ProjectClass" Role="ProjectClass" Multiplicity="0..1" />
+          <End Type="CompanyModel.Project" Role="Project" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ProjectClass">
+              <PropertyRef Name="ClassId" />
+            </Principal>
+            <Dependent Role="Project">
+              <PropertyRef Name="ClassId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="CompanyModelStoreContainer" CdmEntityContainer="CompanyEntities">
+          <EntitySetMapping Name="Channels">
+            <EntityTypeMapping TypeName="CompanyModel.Channel">
+              <MappingFragment StoreEntitySet="Channel">
+                <ScalarProperty Name="ChannelName" ColumnName="ChannelName" />
+                <ScalarProperty Name="ChannelId" ColumnName="ChannelId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Introductions">
+            <EntityTypeMapping TypeName="CompanyModel.Introduction">
+              <MappingFragment StoreEntitySet="Introduction">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="IsImage" ColumnName="IsImage" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsUrl" ColumnName="IsUrl" />
+                <ScalarProperty Name="IsElite" ColumnName="IsElite" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="IntroductionId" ColumnName="IntroductionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LoginLogs">
+            <EntityTypeMapping TypeName="CompanyModel.LoginLog">
+              <MappingFragment StoreEntitySet="LoginLog">
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LoginLogId" ColumnName="LoginLogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="CompanyModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="IsImage" ColumnName="IsImage" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsUrl" ColumnName="IsUrl" />
+                <ScalarProperty Name="IsElite" ColumnName="IsElite" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="NewsId" ColumnName="NewsId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewsClasses">
+            <EntityTypeMapping TypeName="CompanyModel.NewsClass">
+              <MappingFragment StoreEntitySet="NewsClass">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="CompanyModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="IsImage" ColumnName="IsImage" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsUrl" ColumnName="IsUrl" />
+                <ScalarProperty Name="IsElite" ColumnName="IsElite" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="PartnerId" ColumnName="PartnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="CompanyModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="IsImage" ColumnName="IsImage" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsUrl" ColumnName="IsUrl" />
+                <ScalarProperty Name="IsElite" ColumnName="IsElite" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductClasses">
+            <EntityTypeMapping TypeName="CompanyModel.ProductClass">
+              <MappingFragment StoreEntitySet="ProductClass">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="CompanyModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PostTime" ColumnName="PostTime" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="IsImage" ColumnName="IsImage" />
+                <ScalarProperty Name="IsShow" ColumnName="IsShow" />
+                <ScalarProperty Name="IsUrl" ColumnName="IsUrl" />
+                <ScalarProperty Name="IsElite" ColumnName="IsElite" />
+                <ScalarProperty Name="IsTop" ColumnName="IsTop" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Hits" ColumnName="Hits" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectClasses">
+            <EntityTypeMapping TypeName="CompanyModel.ProjectClass">
+              <MappingFragment StoreEntitySet="ProjectClass">
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="Summary" ColumnName="Summary" />
+                <ScalarProperty Name="ClassName" ColumnName="ClassName" />
+                <ScalarProperty Name="ClassId" ColumnName="ClassId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="CompanyModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams>
+      <Diagram Name="CompanySite">
+        <EntityTypeShape EntityType="CompanyModel.Channel" Width="1.5" PointX="0.75" PointY="1" Height="1.3969734700520746" />
+        <EntityTypeShape EntityType="CompanyModel.Introduction" Width="1.5" PointX="8.75" PointY="1" Height="3.4981901041666674" />
+        <EntityTypeShape EntityType="CompanyModel.LoginLog" Width="1.5" PointX="3" PointY="3.875" Height="1.7790128580729174" />
+        <EntityTypeShape EntityType="CompanyModel.News" Width="1.5" PointX="6" PointY="2.75" Height="4.0712491861979174" />
+        <EntityTypeShape EntityType="CompanyModel.NewsClass" Width="1.5" PointX="3.75" PointY="0.75" Height="1.9700325520833246" />
+        <EntityTypeShape EntityType="CompanyModel.Partner" Width="1.5" PointX="10.75" PointY="1" Height="3.3071704101562602" />
+        <EntityTypeShape EntityType="CompanyModel.Product" Width="1.5" PointX="8" PointY="8.25" Height="3.880229492187496" />
+        <EntityTypeShape EntityType="CompanyModel.ProductClass" Width="1.5" PointX="5.75" PointY="9.25" Height="1.9700325520833246" />
+        <EntityTypeShape EntityType="CompanyModel.Project" Width="1.5" PointX="3" PointY="8.25" Height="4.0712491861979174" />
+        <EntityTypeShape EntityType="CompanyModel.ProjectClass" Width="1.5" PointX="0.75" PointY="9.375" Height="1.9700325520833388" />
+        <EntityTypeShape EntityType="CompanyModel.User" Width="1.5" PointX="0.75" PointY="3.75" Height="1.9700325520833246" />
+        <AssociationConnector Association="CompanyModel.FK_LOGINLOG_REFERENCE_USER" >
+          <ConnectorPoint PointX="2.25" PointY="4.7645064290364587" />
+          <ConnectorPoint PointX="3" PointY="4.7645064290364587" />
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyModel.FK_NEWS_REFERENCE_NEWSCLAS" >
+          <ConnectorPoint PointX="5.25" PointY="1.7350162760416623" />
+          <ConnectorPoint PointX="6.75" PointY="1.7350162760416623" />
+          <ConnectorPoint PointX="6.75" PointY="2.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyModel.FK_NEWS_REFERENCE_USER" >
+          <ConnectorPoint PointX="2.25" PointY="3.78125" />
+          <ConnectorPoint PointX="6" PointY="3.78125" />
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyModel.FK_PRODUCT_REFERENCE_PRODUCTC" >
+          <ConnectorPoint PointX="7.25" PointY="10.235016276041662" />
+          <ConnectorPoint PointX="8" PointY="10.235016276041662" />
+        </AssociationConnector>
+        <AssociationConnector Association="CompanyModel.FK_PROJECT_REFERENCE_PROJECTC" >
+          <ConnectorPoint PointX="2.25" PointY="10.360016276041669" />
+          <ConnectorPoint PointX="3" PointY="10.360016276041669" />
+        </AssociationConnector>
+      </Diagram>
+    </Diagrams>
+  </Designer>
+</edmx:Edmx>

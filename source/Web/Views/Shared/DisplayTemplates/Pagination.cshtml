@@ -1,0 +1,45 @@
+﻿@model CompanySite.Models.Pagination
+ @Styles.Render("~/Content/Site.css")
+<!DOCTYPE html>
+    
+    <div class="divPagination">
+        @*pagecount = (totalRecord+pageSize-1)/pageSize*@
+        @if (Model.HasPrevious)
+        { 
+             @Html.ActionLink("上一页", Model.BaseUrl, new { pageNo = Model.CurrentPage - 1 })
+        }
+        @if (((Model.CurrentPage + Model.PageGroup - 1) / Model.PageGroup) * Model.PageGroup < (Model.Total + Model.PageSize - 1) / Model.PageSize)
+        {
+            for (int i = ((Model.CurrentPage + Model.PageGroup - 1) / Model.PageGroup) * Model.PageGroup - (Model.PageGroup - 1); i <= ((Model.CurrentPage + Model.PageGroup - 1) / Model.PageGroup) * Model.PageGroup; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    @Html.ActionLink("第" + i.ToString() + "页", Model.BaseUrl, new { pageNo = i }, new { @style = "color:red" })
+                }
+                else
+                { 
+                    @Html.ActionLink("第" + i.ToString() + "页", Model.BaseUrl, new { pageNo = i })  
+                }
+            }
+        }
+        else
+        {
+            for (int i = ((Model.CurrentPage + Model.PageGroup - 1) / Model.PageGroup) * Model.PageGroup - (Model.PageGroup - 1); i <= (Model.Total + Model.PageSize - 1) / Model.PageSize; i++)
+            {
+                if (i == Model.CurrentPage)
+                {
+                    @Html.ActionLink("第" + i.ToString() + "页", Model.BaseUrl, new { pageNo = i }, new { @style = "color:red" })
+                }
+                else
+                { 
+                    @Html.ActionLink("第" + i.ToString() + "页", Model.BaseUrl, new { pageNo = i })  
+                }
+            }
+        }
+         @if (Model.HasNext)
+         { 
+             @Html.ActionLink("下一页", Model.BaseUrl, new { pageNo = Model.CurrentPage + 1 })
+         }
+         
+      
+    </div>

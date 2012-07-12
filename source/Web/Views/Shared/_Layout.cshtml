@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+    </head>
+    <body>
+       <div class="nav">
+            <div class="navlist">
+                <ul>
+                    <li> @Html.ActionLink("首页", "Index","home") </li>
+                    <li> @Html.ActionLink("公司简介", "Index","home") </li>
+                    <li> @Html.ActionLink("新闻资讯", "Index","home") </li>
+                    <li> @Html.ActionLink("产品展示", "Index","home") </li>
+                    <li> @Html.ActionLink("合作案例", "Index","home") </li>
+                    <li> @Html.ActionLink("合作伙伴", "Index","home") </li>
+                    <li> @Html.ActionLink("人力资源", "Index","home") </li>
+                    <li> @Html.ActionLink("联系我们", "Index","home") </li>
+                </ul>
+            </div>
+       </div>
+       @RenderSection("featured", required: false)
+       <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+       </section>
+    </body>
+</html>

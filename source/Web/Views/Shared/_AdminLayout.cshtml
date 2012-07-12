@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title - My ASP.NET MVC Application</title>
+        <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @Scripts.Render("~/bundles/modernizr")
+        @Scripts.Render("~/bundles/jquery")
+        @RenderSection("Scripts", required: false)
+    </head>
+    <body>
+       <div class="adminmain">
+            <div class="adminleft adminmenu">
+                <ul>
+                    <li class="first"> @Html.ActionLink("新闻资讯", "Index","home") </li>
+                    <li> @Html.ActionLink("新闻管理", "Index","home") </li>
+                    <li> @Html.ActionLink("栏目管理", "Index","home") </li>
+                    <li class="first"> @Html.ActionLink("业务展示", "Index","home") </li>
+                    <li> @Html.ActionLink("业务管理", "Index","home") </li>
+                    <li> @Html.ActionLink("业务类别", "Index","home") </li>
+                   @* <li> @Html.ActionLink("产品展示", "Index","home") </li>
+                    <li> @Html.ActionLink("合作案例", "Index","home") </li>
+                    <li> @Html.ActionLink("合作伙伴", "Index","home") </li>
+                    <li> @Html.ActionLink("人力资源", "Index","home") </li>
+                    <li> @Html.ActionLink("联系我们", "Index","home") </li>*@
+                </ul>
+            </div>
+            <div class="adminright">
+                 @RenderBody()
+            </div>
+       </div>
+       
+    </body>
+</html>
